@@ -1,5 +1,7 @@
 import app from "./src";
 
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
+const PORT : string = process.env.PORT as string || "3000";  
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
