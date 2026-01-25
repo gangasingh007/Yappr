@@ -22,7 +22,7 @@ model User {
 
 model Chat {
   id             String       @id @default(uuid())
-  participantA   User        @relation("ParticipantA", fields: [participantAId], references: [id])
+  participantA   User         @relation("ParticipantA", fields: [participantAId], references: [id])
   participantAId String
   participantB   User         @relation("ParticipantB", fields: [participantBId], references: [id])
   participantBId String
@@ -31,6 +31,9 @@ model Chat {
   lastMessageAt  DateTime?    @default(now())
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
+
+  @@unique([participantAId, participantBId])
+  @@index([participantAId, participantBId])
 }
 
 
@@ -41,6 +44,7 @@ model Message {
   sender     User      @relation(fields: [senderId], references: [id])
   senderId   String
   text       String
+  readAt     DateTime?
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
 }

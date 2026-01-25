@@ -1,7 +1,7 @@
 import type { Response } from "express";
 import { prisma } from "../lib/prisma";
-import type { AuthenticatedRequest } from "../middleware/auth";
 import { clerkClient, getAuth } from "@clerk/express";
+import type { AuthenticatedRequest } from "../../types";
 
 
 export async function getMe(req: AuthenticatedRequest, res: Response) {
