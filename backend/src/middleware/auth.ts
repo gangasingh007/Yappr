@@ -1,12 +1,9 @@
-import type { Response, Request, NextFunction } from "express";
+import type { Response, NextFunction } from "express";
 import { getAuth } from "@clerk/express";
 import { requireAuth } from "@clerk/express";
 import { prisma } from "../lib/prisma";
+import type { AuthenticatedRequest } from "../../types";
 
-export interface AuthenticatedRequest extends Request {
-  clerkId: string;
-  userId: string;
-}
 
 export const protectRoute = [
   requireAuth(),
